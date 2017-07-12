@@ -1,25 +1,24 @@
 var http = require("http");
 var fs = require('fs');
 var port = 8080;
-var serverUrl = "192.168.1.108";
-var counter = 0;
+var serverUrl = "0.0.0.0"
+
+var date = Date()
+var weather = ""
+var news = ""
 
 var server = http.createServer(function(req,res)
 {
-
-	console.log("Request: " + req.url);
-	var file = '.' + req.url;
-	console.log("Read file. " + file);
 	
-	fs.readFile(file, function(err, text){
-	console.log("readFile: " + text + ' ' + err);
+	res.writeHead(200, {"Content-Type": "text/html"});
 
-	
-	res.setHeader("Content-Type", "text/html");
-	res.end(text);
+        var response = 
+            "Hello! <br /><br />" + 
+            "The current time is " + date + "<br /><br />" +
+            "The current weather is " + weather + "<br /><br />" +
+            "The current news are " + news + "<br /><br />"
 
-	});
-
+	res.end(response)
 });
 
 console.log("Listening at " + serverUrl + ":" + port);
