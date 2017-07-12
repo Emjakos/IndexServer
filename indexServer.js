@@ -1,25 +1,35 @@
 var http = require("http");
 var fs = require('fs');
+var util = require('util');
 var port = 8080;
-var serverUrl = "0.0.0.0"
+var serverUrl = "0.0.0.0";
 
-var fetchWeather = 
-function()
-{
-return http.get({
-host: 'api.wunderground.com'
-path: '/api/3d903c70641c080b/conditions/q/CA/San_Francisco.json'
+var date = Date();
 
-}
-	
+// Read the API key from a secret file
+var key = fs.readFileSync('weather_key.txt', 'utf8').trim();
 
-var date = Date()
-var weather = fetchWeather()
-var news = ""
+// Variable with the weather URL
+var weatherURL = 'http://api.wunderground.com/api/' + key + '/conditions/q/CA/San_Francisco.json';
+
+// main weather array
+var weather = [];
+
+// weather HTTP request
+var weatherRequest= http.get(
+    weatherURL,
+    function (response) {
+        response.setEncoding('utf8')
+        response.on('data', function(chunk) {
+            weather.push(chunk);
+        });
+    });
+
+
+var news = "";
 
 var server = http.createServer(function(req,res)
 {
-	
 	res.writeHead(200, {"Content-Type": "text/html"});
 
         var response = 
