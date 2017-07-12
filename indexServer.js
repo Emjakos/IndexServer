@@ -3,8 +3,18 @@ var fs = require('fs');
 var port = 8080;
 var serverUrl = "0.0.0.0"
 
+var fetchWeather = 
+function()
+{
+return http.get({
+host: 'api.wunderground.com'
+path: '/api/3d903c70641c080b/conditions/q/CA/San_Francisco.json'
+
+}
+	
+
 var date = Date()
-var weather = ""
+var weather = fetchWeather()
 var news = ""
 
 var server = http.createServer(function(req,res)
