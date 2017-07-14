@@ -1,3 +1,4 @@
+
 var http = require("http");
 var fs = require('fs');
 var util = require('util');
@@ -22,10 +23,19 @@ var weatherRequest= http.get(
         response.setEncoding('utf8')
         response.on('data', function(chunk) {
             weather.push(chunk);
-        });
+	setTimeout("", 3000000)
+	});
+
     });
-
-
+for  
+if(weather.length>1)
+{
+var weatherFull = JSON.parse(weather).response.termsofService;
+}
+else
+{
+var weatherFull = "No Weather Yet";
+}
 var news = "";
 
 var server = http.createServer(function(req,res)
@@ -35,7 +45,7 @@ var server = http.createServer(function(req,res)
         var response = 
             "Hello! <br /><br />" + 
             "The current time is " + date + "<br /><br />" +
-            "The current weather is " + weather + "<br /><br />" +
+            "The current weather is " + weatherFull + "<br /><br />" +
             "The current news are " + news + "<br /><br />"
 
 	res.end(response)
