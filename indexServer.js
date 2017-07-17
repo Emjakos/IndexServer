@@ -83,7 +83,7 @@ var server = http.createServer(function(req,res)
             "Hello! <br /><br />" + 
             "The current time is " + date + "<br /><br />" +
      /*       "The current weather is " + weatherFull.current_observation.weather + " " + weatherFull.current_observation.temp_c + "&#8451;" + "<br /><br />" + */
-            "The current news are " + newsFull.rss.item.title
+            "The current news are " + newsFull.rss.channel[0].title[0]
  + "<br /><br />"
 
 	res.end(response)
