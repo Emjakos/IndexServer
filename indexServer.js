@@ -86,6 +86,7 @@ var server = http.createServer(function(req,res)
             "The current news are <a href=\"" + newsFull.rss.channel[0].item[0].link + "\">"+ newsFull.rss.channel[0].item[0].title + "</a>" + "<br />" +
 	    newsFull.rss.channel[0].item[0].description
 */
+var JsonObject=
 	{
 		"Info": [
 		{
