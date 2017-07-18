@@ -16,7 +16,7 @@ var weatherFull = "";
 var weatherURL = 'http://api.wunderground.com/api/' + key + '/conditions/q/CA/San_Francisco.json';
 var newsURL = 'http://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_NEWS';
 
-/* // main weather array
+// main weather array
 var weather = [];
 var getWeather = function ()
 {
@@ -43,7 +43,7 @@ var getWeather = function ()
 
 };
 getWeather();
-*/
+
 //________________________________________________________________________________________________________________________________________________________________________
 var newsFull = "";
 var news = [];
@@ -80,11 +80,21 @@ var server = http.createServer(function(req,res)
 	res.writeHead(200, {"Content-Type": "text/html"});
 
         var response = 
-            "Hello! <br /><br />" + 
+         /* "Hello! <br /><br />" + 
             "The current time is " + date + "<br /><br />" +
-     /*       "The current weather is " + weatherFull.current_observation.weather + " " + weatherFull.current_observation.temp_c + "&#8451;" + "<br /><br />" + */
-            "The current news are " + newsFull.rss.channel[0].title[0]
- + "<br /><br />"
+            "The current weather is " + weatherFull.current_observation.weather + " " + weatherFull.current_observation.temp_c + "&#8451;" + "<br /><br />" + 
+            "The current news are <a href=\"" + newsFull.rss.channel[0].item[0].link + "\">"+ newsFull.rss.channel[0].item[0].title + "</a>" + "<br />" +
+	    newsFull.rss.channel[0].item[0].description
+*/
+	{
+		"Info": [
+		{
+		"date": date
+		"weatherJSON": weatherFull.current_observation.weather
+		"tempJSON": weatherFull.current_observation.temp_c
+		"newsTitleJSON": newsFull.rss.channel[0].item[0].title 
+		"newsDescJSON": newsFull.rss.channel[0].item[0].description
+		};
 
 	res.end(response)
 });
