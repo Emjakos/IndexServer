@@ -1,10 +1,45 @@
+<!DOCTYPE HTML>
 <html>
 <head>
-<script src="indexServer.js"></script>
+<style>
+#weather{
+color: #00f;
+font-size: 100px;
+position: absolute;
+    top: 000px;
+    right: 100px;
+}
+#news{
+color: #f00
+}
+#clock{
+color: #0f0;
+font-size: 20px;
+position: absolute;
+    top: 000px;
+    right: 100px;
+}
+.news {
+display: none;
+
+}
+.news:first-child {
+display: block;
+font-size: 25px;
+position: absolute;
+    top: 650px;
+    right: 100px;
+
+}
+#title {
+font-size: 40px;
+}
+</style>
 </head>
-<body onload="fetchWeather()", onload="fetchNews">
-<div id="newsFull" class="newsFull"></div>
-<div id="weather" class="weather"></div>
-<div id="clock" class="clock"></div>
+<body onload="getNews">
+<h1></h1>
+<div id="weather"> {{ weather.current_observation.temp_c }}C</div>
+<div id="news">{{ #news }}{{ #item }}<div class="news"><div id="title">{{title}}</div>{{description }}</div>{{ /item }}{{ /news }}</div>
+<div id="clock">{{ time }}</div>
 </body>
 </html>

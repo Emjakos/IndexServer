@@ -4,8 +4,9 @@ var fs = require('fs');
 var util = require('util');
 var port = 8080;
 var serverUrl = "0.0.0.0";
-
+var mu = require('mu2');
 var date = Date();
+
 
 //____________________________________________________________________________________________________________________________________________________________
 
@@ -78,15 +79,20 @@ getNews();
 var server = http.createServer(function(req,res)
 {
 	res.writeHead(200, {"Content-Type": "text/html"});
+	
+	var stream = mu.compileAndRender('index.html', {weather: weatherFull, news: newsFull.rss.channel[0], time: date})
+	//var indexHtml = fs.readFileSync("./index.html", "utf8")
 
-        var response = 
-         /* "Hello! <br /><br />" + 
+	stream.pipe(res);
+//________________________________________________________________________________________________________________________________________________________________________
+
+        /*  "Hello! <br /><br />" + 
             "The current time is " + date + "<br /><br />" +
             "The current weather is " + weatherFull.current_observation.weather + " " + weatherFull.current_observation.temp_c + "&#8451;" + "<br /><br />" + 
             "The current news are <a href=\"" + newsFull.rss.channel[0].item[0].link + "\">"+ newsFull.rss.channel[0].item[0].title + "</a>" + "<br />" +
 	    newsFull.rss.channel[0].item[0].description
-*/
-var JsonObject=
+
+ var JsonObject=
 	{
 		"Info": [
 		{
@@ -96,8 +102,8 @@ var JsonObject=
 		"newsTitleJSON": newsFull.rss.channel[0].item[0].title 
 		"newsDescJSON": newsFull.rss.channel[0].item[0].description
 		};
-
-	res.end(response)
+*/
+	//res.end(response)
 });
 
 console.log("Listening at " + serverUrl + ":" + port);
