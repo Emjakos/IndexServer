@@ -36,7 +36,7 @@ font-size: 40px;
 }
 </style>
 </head>
-<body onload="getNews">
+<body onload="getNews", bgcolor="#000">
 <h1></h1>
 <div id="weather"> {{ weather.current_observation.temp_c }}C</div>
 <div id="news">{{ #news }}{{ #item }}<div class="news"><div id="title">{{title}}</div>{{description }}</div>{{ /item }}{{ /news }}</div>
