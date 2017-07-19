@@ -8,13 +8,13 @@ var mu = require('mu2');
 var date = Date();
 
 
-//____________________________________________________________________________________________________________________________________________________________
+//____________________________________________________________________________CA_San_Francisco_______________________________________________________________________________
 
 // Read the API key from a secret file
 var key = fs.readFileSync('weather_key.txt', 'utf8').trim();
 var weatherFull = "";
 // Variable with the weather URL
-var weatherURL = 'http://api.wunderground.com/api/' + key + '/conditions/q/CA/San_Francisco.json';
+var weatherURL = 'http://api.wunderground.com/api/' + key + '/conditions/q/FI/Helsinki.json';
 var newsURL = 'http://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_NEWS';
 
 // main weather array
