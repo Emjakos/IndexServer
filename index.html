@@ -2,11 +2,14 @@
 <html>
 <head>
 <style>
+body {
+    background-color: black;
+}
 #weather{
 color: #00f;
-font-size: 100px;
+font-size: 40px;
 position: absolute;
-    top: 000px;
+    top: 60px;
     right: 100px;
 }
 #news{
@@ -14,10 +17,10 @@ color: #f00
 }
 #clock{
 color: #0f0;
-font-size: 20px;
+font-size: 30px;
 position: absolute;
-    top: 000px;
-    right: 100px;
+    top: 0px;
+    right: 0px;
 }
 .news {
 display: none;
@@ -25,21 +28,29 @@ display: none;
 }
 .news:first-child {
 display: block;
-font-size: 25px;
+font-size: 20px;
 position: absolute;
-    top: 650px;
+    top: 660px;
     right: 100px;
 
 }
 #title {
-font-size: 40px;
+font-size: 35px;
+}
+.image {
+display: block;
+top: 0px;
+height: 70px;
+
 }
 </style>
 </head>
-<body onload="getNews", bgcolor="#000">
+<body>
 <h1></h1>
 <div id="weather"> {{ weather.current_observation.temp_c }}C</div>
 <div id="news">{{ #news }}{{ #item }}<div class="news"><div id="title">{{title}}</div>{{description }}</div>{{ /item }}{{ /news }}</div>
 <div id="clock">{{ time }}</div>
+<div><img  class="image" src="cloudy.png" />Easter Egg!</div>
 </body>
+ <meta http-equiv="refresh" content="5"; URL="192.168.1.128:8080">
 </html>
