@@ -6,42 +6,40 @@ body {
     background-color: black;
 }
 #weather{
-color: #00f;
+color: #fff;
 font-size: 40px;
 position: absolute;
     top: 60px;
-    right: 100px;
+    right: 10px;
 }
 #news{
-color: #f00
+color: #fff
 }
 #clock{
-color: #0f0;
-font-size: 30px;
+color: #fff;
+font-size: 60px;
 position: absolute;
     top: 0px;
-    right: 0px;
+    right: 10px;
 }
 .news {
 display: none;
-
 }
 .news:first-child {
 display: block;
 font-size: 20px;
 position: absolute;
-    top: 660px;
-    right: 100px;
-
+    bottom: 10px;
+    left: 10px;
 }
 #title {
 font-size: 35px;
+left: 10px;
 }
 .image {
 display: block;
 top: 0px;
 height: 70px;
-
 }
 </style>
 </head>
@@ -51,6 +49,8 @@ height: 70px;
 <div id="news">{{ #news }}{{ #item }}<div class="news"><div id="title">{{title}}</div>{{description }}</div>{{ /item }}{{ /news }}</div>
 <div id="clock">{{ time }}</div>
 <div><img  class="image" src="cloudy.png" />Easter Egg!</div>
+<script>
+</script>
 </body>
- <meta http-equiv="refresh" content="5"; URL="192.168.1.128:8080">
+ <meta http-equiv="refresh" content="60"; URL="192.168.1.128:8080">
 </html>

@@ -2,11 +2,12 @@ url = require('url');
 var parseString = require('xml2js').parseString;
 var http = require("http");
 var fs = require('fs');
+var reload = require('reload')
 var util = require('util');
 var port = 8080;
 var serverUrl = "0.0.0.0";
 var mu = require('mu2');
-var date = Date();
+
 
 //____________________________________________________________________________CA_San_Francisco_______________________________________________________________________________
 
@@ -79,49 +80,54 @@ getNews();
 
 var server = http.createServer(function(req,res)
 {
-try{
-  var request = url.parse(req.url, true);
-  var action = request.pathname;
+	try
+	{
+  		var request = url.parse(req.url, true);
+  		var action = request.pathname;
 
-  if (action == '/cloudy.png') {
-var imgstr = './Question.png'; 
-  if (weatherFull.current_observation.weather == "Clear")
+  if (action == '/cloudy.png') 
 {
-console.log("sunny");
-imgstr = './sunny.png';
-}
-else if (weatherFull.current_observation.weather == "Partly Cloudy" || weatherFull.current_observation.weather == "Scattered Clouds")
-{
-console.log("peeking");
-imgstr = './peeking.png';
-}
-else if (weatherFull.current_observation.weather == "Overcast" || weatherFull.current_observation.weather == "Mostly Cloudy")
-{
-console.log("cloudy");
-imgstr = './cloudy.png';
-}
-else if (weatherFull.current_observation.weather == "Rain Showers" || weatherFull.current_observation.weather == "Rainy")
-{
-console.log("rainy")
-imgstr = './rainy.png';
-}
-
-     var img = fs.readFileSync(imgstr);
-     res.writeHead(200, {'Content-Type': 'image/png' });
-     res.end(img, 'binary');
-  } else { 
-	res.writeHead(200, {"Content-Type": "text/html"});
+	var imgstr = './Question.png'; 
+  	if (weatherFull.current_observation.weather == "Clear")
+	{
+		console.log("sunny");
+		imgstr = './sunny.png';
+	}
+		else if (weatherFull.current_observation.weather == "Partly Cloudy" || weatherFull.current_observation.weather == "Scattered Clouds")
+	{
+		console.log("peeking");
+		imgstr = './peeking.png';
+	}
+		else if (weatherFull.current_observation.weather == "Overcast" || weatherFull.current_observation.weather == "Mostly Cloudy")
+	{
+		console.log("cloudy");
+		imgstr = './cloudy.png';
+	}
+		else if (weatherFull.current_observation.weather == "Rain Showers" || weatherFull.current_observation.weather == "Rainy")
+	{
+		console.log("rainy")
+		imgstr = './rainy.png';
+	}
 	
-	var stream = mu.compileAndRender('index.html', {weather: weatherFull, news: newsFull.rss.channel[0], time: date})
+    		var img = fs.readFileSync(imgstr);
+     		res.writeHead(200, {'Content-Type': 'image/png' });
+     		res.end(img, 'binary');
+     		
+} 
+else 
+{ 
+	res.writeHead(200, {"Content-Type": "text/html"});
+	var date = new Date();
+	var stream = mu.compileAndRender('index.html', {weather: weatherFull, news: newsFull.rss.channel[0], time: date.getHours() + ":" + date.getMinutes()})
 	//var indexHtml = fs.readFileSync("./index.html", "utf8")
 
 	stream.pipe(res);
-  }
-
 }
+
+   } 
 catch(ex)
 {
-console.log("Exception " + ex.toString());
+	console.log("Exception " + ex.toString());
 }
 //________________________________________________________________________________________________________________________________________________________________________
 
