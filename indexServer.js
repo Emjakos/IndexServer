@@ -9,7 +9,7 @@ var serverUrl = "0.0.0.0";
 var mu = require('mu2');
 
 
-//____________________________________________________________________________CA_San_Francisco_______________________________________________________________________________
+//_____________________________________________________________________________________________________________________________________________________________
 
 // Read the API key from a secret file
 var key = fs.readFileSync('weather_key.txt', 'utf8').trim();
@@ -118,7 +118,12 @@ else
 { 
 	res.writeHead(200, {"Content-Type": "text/html"});
 	var date = new Date();
-	var stream = mu.compileAndRender('index.html', {weather: weatherFull, news: newsFull.rss.channel[0], time: date.getHours() + ":" + date.getMinutes()})
+	var min = date.getMinutes();
+	if (min < 10) 
+	{
+		min = "0" + min;
+	}
+	var stream = mu.compileAndRender('index.html', {weather: weatherFull, news: newsFull.rss.channel[0], time: date.getHours() + ":" + min})
 	//var indexHtml = fs.readFileSync("./index.html", "utf8")
 
 	stream.pipe(res);
