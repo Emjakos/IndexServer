@@ -1,0 +1,13 @@
+[Unit]
+Description=MagicMirror Nodejs Server
+
+[Service]
+ExecStart=/home/pi/MagicMirror/start.sh
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIndentifier=MagicMirror
+User=root
+
+[Install]
+WantedBy=multi-user.target

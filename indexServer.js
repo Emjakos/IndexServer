@@ -23,7 +23,7 @@ var weather = [];
 var getWeather = function ()
 {
 	// weather HTTP request
-	setTimeout(getWeather, 3000000);
+	setTimeout(getWeather, 300000);
 	var weatherRequest= http.get(
     	weatherURL,
 

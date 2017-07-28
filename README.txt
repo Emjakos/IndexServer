@@ -19,10 +19,20 @@ has all of the information that is displayed is gotten here, good luck.
 home/pi/MagicMirror/index.html
 The layout of the page and the file i understand the best.
 
-/etc/init.d/MagicMirror
-The startupscript that is responsible of turning on the server,
-i have no idea what this noe really does.
+/etc/system/system/MagicMirror.service
+Starts the script below and makes sure it stays on.
 
+/home/pi/MagicMirror/start.sh
+Starts the server.
 
 ~/.config/autostart/autoChromium.desktop
-Opens chromium and loads http://localhost:8080
+Opens chromium and loads http://localhost:8080.
+
+/home/pi/MagicMirror/README.txt
+This file, explains the project to the best of my ability.
+
+Known bugs:
+-The entire website flashes when reloading.
+-The weather function doesn't accommodate for all possible weather patterns, only very common ones.
+-The news function is unable to display all symbols like for example different variations of quotes.
+-The program was buit to fit the screen it was developed on and might not work with all screens.
